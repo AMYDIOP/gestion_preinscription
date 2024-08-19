@@ -6,9 +6,13 @@ use App\Http\Controllers\CampusController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FilliereController;
 use App\Http\Controllers\FormationController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\PreInscriptionController;
+use App\Http\Controllers\Admin\AdmissionController;
+use App\Http\Controllers\Admin\ProgrammeController;
+use App\Http\Controllers\Admin\DepartementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,3 +74,12 @@ Route::get('/preinscriptions', [PreInscriptionController::class, 'index'])->name
 Route::get('/preinscription', [PreinscriptionController::class, 'showForm'])->name('preinscription');
 // Route pour traiter la soumission du formulaire
 Route::post('/preinscription', [PreInscriptionController::class, 'submit'])->name('preinscription.submit');
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/dashboarde', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::resource('programmes', ProgrammeController::class);
+    Route::resource('departements', DepartementController::class);
+    Route::resource('admissions', AdmissionController::class);
+});
+

@@ -34,12 +34,28 @@ return [
     | Supported: "session"
     |
     */
-
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'admin' => [
+        'driver' => 'session',
+        'provider' => 'admins',
+    ],
+
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
+    // Autres guards...
+],
+
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
+    ],
+
+    'admins' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
     ],
 
     /*
@@ -112,4 +128,5 @@ return [
 
     'password_timeout' => 10800,
 
+],
 ];

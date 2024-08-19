@@ -10,11 +10,10 @@ class Demande_admission extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'nom',
-        'statut',
         'date_soumission',
-        'candidat',
-        'programme'
+        'niveau_etude',
+        'user_id',
+        'programme_id',
        
     ];
     public function document(): BelongsTo

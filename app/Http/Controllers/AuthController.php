@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
+use function PHPSTORM_META\elementType;
+
 class AuthController extends Controller
 {
     public function authenticate(Request $request)
@@ -21,7 +23,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+           return redirect()->intended('dashboard');
+            // if(Auth::user()->role_id==1){
+
+            // }else{
+            //     $request->session()->regenerate();
+
+            //     return redirect()->intended('dashboard');
+
+            // }
+          
         }
         return back()->with(
             'error',

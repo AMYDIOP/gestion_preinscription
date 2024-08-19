@@ -34,7 +34,6 @@ class PreInscriptionController extends Controller
         $requestvalidateProgramme['user_id']=$candidat->id;
         $requestvalidateProgramme['date_soumission']=now();
         $admission=Demande_admission::create($requestvalidateProgramme);
-        dd($candidat);      
             if($candidat instanceof User){
                 return redirect()->back()->with('success', 'Préinscription réussie !');
             }
